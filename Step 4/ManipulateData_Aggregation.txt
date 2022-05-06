@@ -1,0 +1,2 @@
+db.Tweets.find({misinformation:{$exists:true}}).forEach(function(obj) {obj.misinformation = ""+obj.misinformation; db.Tweets.save(obj);});
+db.Tweets.aggregate([{$group:{_id:"$misinformation", value:{$sum:"$retweet_count"}}}, {$out: "result1"}])

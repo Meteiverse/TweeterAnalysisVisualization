@@ -1,0 +1,14 @@
+cd C:\Program Files\MongoDB\Server\5.0\bin
+
+set Path=C:\data\MongoData\sydneysiege\
+set DB=sydneysiege
+set User=admin
+set Password=admin
+
+for /d %i in (%Path%*) do (
+echo %~nxi
+echo %i\source-tweets\%~nxi.json
+mongoimport --uri mongodb+srv://%User%:%Password%@cluster0.nwwcw.mongodb.net/%DB% --collection Tweets --type=json --file %i\source-tweets\%~nxi.json
+mongoimport --uri mongodb+srv://%User%:%Password%@cluster0.nwwcw.mongodb.net/%DB% --collection Retweets --type=json --file %i\retweets.json
+
+)

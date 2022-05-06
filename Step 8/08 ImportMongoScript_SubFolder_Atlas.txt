@@ -1,0 +1,12 @@
+set Path=C:\data\MongoData\sydneysiege\
+set DB=sydneysiege
+set User=admin
+set Password=admin
+
+for /d %i in (%Path%*) do (
+echo %i\reactions\
+ for %j in (%i\reactions\*) do (
+ echo %j
+ mongoimport --uri mongodb+srv://%User%:%Password%@cluster0.nwwcw.mongodb.net/%DB% --collection Reactions --type=json --file %j
+ )
+)

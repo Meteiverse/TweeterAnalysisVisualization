@@ -1,0 +1,14 @@
+import pymongo
+from pymongo import MongoClient
+import pandas as pd
+
+uri = 'mongodb+srv://admin:admin@cluster0.nwwcw.mongodb.net/sydneysiege?retryWrites=true&w=majority'
+# start client to connect to MongoDB server 
+client = MongoClient( uri )
+db = client.sydneysiege
+df = []
+Tweets_collection = db.Retweets
+
+for tweet in Tweets_collection.find():
+    df.append(tweet)
+df1 = pd.DataFrame(df)
